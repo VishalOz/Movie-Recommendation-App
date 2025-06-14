@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileReader;
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
@@ -30,6 +32,7 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.println("...");
+                    viewAllMovies();
                     break;
                 case 2:
                     System.out.println("..");
@@ -54,5 +57,19 @@ public class Main {
             }
         }
         return choice;
+    }
+    public static void viewAllMovies() {
+        try {
+            File file = new File("movies.xlsx");
+            Scanner reader = new Scanner (file);
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
+                System.out.println(data);
+            }
+            reader.close();
+        }catch (Exception e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }
